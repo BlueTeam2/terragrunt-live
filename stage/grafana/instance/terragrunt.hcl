@@ -12,5 +12,5 @@ locals {
 }
 
 inputs = {
-  hostname = "${local.env}-mongodb"
+  hostname = "${local.env}-grafana"
 }
