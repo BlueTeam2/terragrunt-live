@@ -14,7 +14,7 @@ locals {
 dependency "network" {
   config_path = "../network"
 
-  mock_outputs_allowed_terraform_commands = ["validate", "plan"]
+  mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
   mock_outputs = {
     network_name  = "mock_network_name"
     subnets_names = ["mock_subnet_name"]
@@ -45,13 +45,13 @@ inputs = {
   remove_default_node_pool = true
   node_pools = [
     {
-      name               = "${local.env}-schedule-pool"
-      machine_type       = local.kubernetes_instance_type
-      node_locations     = local.zone
-      initial_node_count = 2
-      autoscaling        = false
-      disk_size_gb       = 40
-      image_type         = "COS_CONTAINERD"
+      name           = "${local.env}-schedule-pool"
+      machine_type   = local.kubernetes_instance_type
+      node_locations = local.zone
+      node_count     = 2
+      autoscaling    = false
+      disk_size_gb   = 40
+      image_type     = "COS_CONTAINERD"
     },
   ]
 }
