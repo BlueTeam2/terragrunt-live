@@ -28,5 +28,6 @@ EOF
 inputs = merge(
   {
     project_id = "softseve-blue-team"
+    project    = "softseve-blue-team" # GCP cloud-router specific
   }
 )
