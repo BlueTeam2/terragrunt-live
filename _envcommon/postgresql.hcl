@@ -10,7 +10,7 @@ locals {
 }
 
 inputs = {
-  name                   = "${local.env}-postgres"
+  name                   = "${local.env}-postgresql"
   database_version       = "15"
   maintenance_window_day = 7
   enable_default_user    = false
