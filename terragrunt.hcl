@@ -20,12 +20,15 @@ generate "provider" {
   contents  = <<EOF
 provider "google" {
   project     = "softseve-blue-team"
-  region      = "us-central1"
 }
 EOF
 }
 
 inputs = merge(
+  # Merge common inputs such as `region` and `zone`
+  # Note that some modules may require other names for these inputs
+  # E.g., google/network module with concrete `subnet_region` input
+  local.environment_vars.inputs,
   {
     project_id = "softseve-blue-team"
     project    = "softseve-blue-team" # GCP cloud-router specific

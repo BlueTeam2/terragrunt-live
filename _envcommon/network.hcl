@@ -7,7 +7,7 @@ locals {
 
   environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
   env              = local.environment_vars.locals.environment
-  region           = local.environment_vars.locals.region
+  region           = local.environment_vars.inputs.region
 }
 
 inputs = {

@@ -7,7 +7,7 @@ locals {
 
   environment_vars         = read_terragrunt_config(find_in_parent_folders("env.hcl"))
   env                      = local.environment_vars.locals.environment
-  zone                     = local.environment_vars.locals.zone
+  zone                     = local.environment_vars.inputs.zone
   kubernetes_instance_type = local.environment_vars.locals.kubernetes_instance_type
 }
 
