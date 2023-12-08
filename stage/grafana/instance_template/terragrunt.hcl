@@ -3,7 +3,8 @@ include "root" {
 }
 
 include "envcommon" {
-  path = "${dirname(find_in_parent_folders())}/_envcommon/instance_template.hcl"
+  path           = "${dirname(find_in_parent_folders())}/_envcommon/instance_template.hcl"
+  merge_strategy = "deep"
 }
 
 locals {
@@ -27,4 +28,8 @@ dependency "firewall_rules" {
 inputs = {
   name_prefix = "${local.env}-grafana-template"
   tags        = dependency.firewall_rules.outputs.firewall_rules_ingress_egress.stage-grafana.target_tags
+
+  labels = {
+    service = "grafana"
+  }
 }

@@ -2,6 +2,11 @@ terraform {
   source = "tfr:///terraform-google-modules/vm/google//modules/instance_template?version=10.1.1"
 }
 
+locals {
+  environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
+  env              = local.environment_vars.locals.environment
+}
+
 dependency "network" {
   config_path = "../../network"
 
@@ -17,6 +22,11 @@ inputs = {
   machine_type         = "e2-micro"
   source_image_project = "ubuntu-os-cloud"
   source_image_family  = "ubuntu-2204-lts"
+
+  labels = {
+    app = "schedule"
+    env = local.env
+  }
 
   service_account = {
     email  = ""
