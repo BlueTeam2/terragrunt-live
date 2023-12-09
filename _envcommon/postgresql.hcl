@@ -16,4 +16,10 @@ inputs = {
   enable_default_user    = false
   enable_default_db      = false
   deletion_protection    = false
+
+  user_labels = {
+    app     = "schedule"
+    env     = local.env
+    service = "postgresql"
+  }
 }
