@@ -1,5 +1,6 @@
 locals {
   environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
+  project          = local.environment_vars.locals.project
 }
 
 remote_state {
@@ -19,7 +20,7 @@ generate "provider" {
   if_exists = "overwrite_terragrunt"
   contents  = <<EOF
 provider "google" {
-  project     = "softseve-blue-team"
+  project     = "${local.project}"
 }
 EOF
 }
@@ -30,7 +31,7 @@ inputs = merge(
   # E.g., google/network module with concrete `subnet_region` input
   local.environment_vars.inputs,
   {
-    project_id = "softseve-blue-team"
-    project    = "softseve-blue-team" # GCP cloud-router specific
+    project_id = "${local.project}"
+    project    = "${local.project}" # GCP cloud-router specific
   }
 )
