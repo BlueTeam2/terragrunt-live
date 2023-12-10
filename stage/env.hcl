@@ -1,5 +1,6 @@
 locals {
   environment              = "stage"
+  project                  = "softseve-blue-team"
   kubernetes_instance_type = "e2-medium"
 }
 
