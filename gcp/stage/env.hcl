@@ -1,7 +1,7 @@
 locals {
   environment              = "stage"
   project                  = "softseve-blue-team"
-  kubernetes_instance_type = "e2-medium"
+  kubernetes_instance_type = "t2a-standard-2"
 }
 
 inputs = {
