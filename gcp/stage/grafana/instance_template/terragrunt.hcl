@@ -2,8 +2,12 @@ include "root" {
   path = find_in_parent_folders()
 }
 
+include "provider" {
+  path = find_in_parent_folders("provider.hcl")
+}
+
 include "envcommon" {
-  path           = "${dirname(find_in_parent_folders())}/_envcommon/instance_template.hcl"
+  path           = "${dirname(find_in_parent_folders())}/gcp/_envcommon/instance_template.hcl"
   merge_strategy = "deep"
 }
 
@@ -18,7 +22,7 @@ dependency "firewall_rules" {
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
   mock_outputs = {
     firewall_rules_ingress_egress = {
-      "stage-mongodb" = {
+      "stage-grafana" = {
         target_tags = ["mock_target_tag"]
       }
     }
@@ -26,10 +30,10 @@ dependency "firewall_rules" {
 }
 
 inputs = {
-  name_prefix = "${local.env}-mongodb-template"
-  tags        = dependency.firewall_rules.outputs.firewall_rules_ingress_egress.stage-mongodb.target_tags
+  name_prefix = "${local.env}-grafana-template"
+  tags        = dependency.firewall_rules.outputs.firewall_rules_ingress_egress.stage-grafana.target_tags
 
   labels = {
-    service = "mongodb"
+    service = "grafana"
   }
 }
