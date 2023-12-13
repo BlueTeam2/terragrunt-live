@@ -12,7 +12,7 @@ locals {
 }
 
 dependency "network" {
-  config_path = "../network"
+  config_path = "../../network"
 
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
   mock_outputs = {
@@ -37,10 +37,11 @@ inputs = {
   regional               = false
   create_service_account = false
   zones                  = [local.zone]
-  network                = dependency.network.outputs.network_name
-  subnetwork             = dependency.network.outputs.subnets_names[0]
-  ip_range_pods          = dependency.network.outputs.subnets_secondary_ranges[0][0].range_name
-  ip_range_services      = dependency.network.outputs.subnets_secondary_ranges[0][1].range_name
+
+  network           = dependency.network.outputs.network_name
+  subnetwork        = dependency.network.outputs.subnets_names[0]
+  ip_range_pods     = dependency.network.outputs.subnets_secondary_ranges[0][0].range_name
+  ip_range_services = dependency.network.outputs.subnets_secondary_ranges[0][1].range_name
 
   remove_default_node_pool = true
   node_pools = [

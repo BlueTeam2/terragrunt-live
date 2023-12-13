@@ -8,7 +8,7 @@ locals {
 }
 
 dependency "network" {
-  config_path = "../network"
+  config_path = "../../network"
 
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
   mock_outputs = {

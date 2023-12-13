@@ -7,5 +7,5 @@ include "provider" {
 }
 
 include "envcommon" {
-  path = "${dirname(find_in_parent_folders())}/gcp/_envcommon/nat.hcl"
+  path = "${dirname(find_in_parent_folders())}/gcp/_envcommon/kubernetes/workload_identity.hcl"
 }
