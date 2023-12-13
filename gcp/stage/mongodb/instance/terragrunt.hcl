@@ -7,14 +7,7 @@ include "provider" {
 }
 
 include "envcommon" {
-  path = "${dirname(find_in_parent_folders())}/gcp/_envcommon/instance.hcl"
+  path = "${dirname(find_in_parent_folders())}/gcp/_envcommon/instance/instance.hcl"
 }
 
-locals {
-  environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
-  env              = local.environment_vars.locals.environment
-}
-
-inputs = {
-  hostname = "${local.env}-mongodb"
-}
+prevent_destroy = false # Pet

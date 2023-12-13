@@ -7,30 +7,22 @@ include "provider" {
 }
 
 include "envcommon" {
-  path = "${dirname(find_in_parent_folders())}/gcp/_envcommon/firewall_rules.hcl"
+  path = "${dirname(find_in_parent_folders())}/gcp/_envcommon/instance/firewall_rules.hcl"
 }
 
 locals {
   environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
   env              = local.environment_vars.locals.environment
-}
 
-dependency "network" {
-  config_path = "../../network"
-
-  mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
-  mock_outputs = {
-    network_name = "mock_network_name"
-  }
+  instance_vars = read_terragrunt_config(find_in_parent_folders("instance.hcl"))
+  name          = local.instance_vars.locals.name
 }
 
 inputs = {
-  network_name = dependency.network.outputs.network_name
-
   ingress_rules = [
     {
-      name          = "${local.env}-grafana"
-      target_tags   = ["grafana"]
+      name          = "${local.env}-${local.name}"
+      target_tags   = [local.name]
       source_ranges = ["0.0.0.0/0"]
 
       allow = [

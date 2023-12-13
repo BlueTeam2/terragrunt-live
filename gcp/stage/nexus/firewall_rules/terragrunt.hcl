@@ -28,7 +28,7 @@ inputs = {
       allow = [
         {
           protocol = "tcp"
-          ports    = [22, 27017]
+          ports    = [22, 443]
         }
       ]
     }
