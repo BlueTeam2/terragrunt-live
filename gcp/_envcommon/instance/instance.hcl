@@ -5,6 +5,9 @@ terraform {
 locals {
   environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
   env              = local.environment_vars.locals.environment
+
+  instance_vars = read_terragrunt_config(find_in_parent_folders("instance.hcl"))
+  name          = local.instance_vars.locals.name
 }
 
 dependency "instance_template" {
@@ -17,5 +20,6 @@ dependency "instance_template" {
 }
 
 inputs = {
+  hostname          = "${local.env}-${local.name}"
   instance_template = dependency.instance_template.outputs.self_link
 }

@@ -10,6 +10,8 @@ include "envcommon" {
   path = "${dirname(find_in_parent_folders())}/gcp/_envcommon/postgresql.hcl"
 }
 
+prevent_destroy = false # Pet
+
 inputs = {
   ip_configuration = {
     authorized_networks = [
