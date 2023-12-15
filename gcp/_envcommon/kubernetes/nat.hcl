@@ -1,8 +1,10 @@
 terraform {
-  source = "tfr:///terraform-google-modules/cloud-router/google?version=6.0.2"
+  source = "${local.base_source_url}?version=6.0.2"
 }
 
 locals {
+  base_source_url = "tfr:///terraform-google-modules/cloud-router/google"
+
   environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
   env              = local.environment_vars.locals.environment
 }

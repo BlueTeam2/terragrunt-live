@@ -1,5 +1,9 @@
 terraform {
-  source = "tfr:///terraform-google-modules/kubernetes-engine/google//modules/auth?version=29.0.0"
+  source = "${local.base_source_url}?version=29.0.0"
+}
+
+locals {
+  base_source_url = "tfr:///terraform-google-modules/kubernetes-engine/google//modules/auth"
 }
 
 dependency "cluster" {
