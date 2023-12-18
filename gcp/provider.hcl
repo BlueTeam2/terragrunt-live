@@ -1,8 +1,3 @@
-locals {
-  environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
-  project          = local.environment_vars.locals.project
-}
-
 generate "provider" {
   path      = "provider.tf"
   if_exists = "overwrite_terragrunt"
@@ -11,6 +6,11 @@ provider "google" {
   project     = "${local.project}"
 }
 EOF
+}
+
+locals {
+  environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
+  project          = local.environment_vars.locals.project
 }
 
 inputs = merge(

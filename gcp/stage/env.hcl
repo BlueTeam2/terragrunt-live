@@ -1,10 +1,10 @@
 locals {
-  environment              = "stage"
-  project                  = "softseve-blue-team"
+  environment = "stage"
+  project     = "softseve-blue-team"
 
   # We extract this variable because the inner structure is too complicated to
   # override, even with the deep merging.
-  kubernetes_instance_type = "e2-medium" 
+  kubernetes_instance_type = "e2-medium"
 }
 
 inputs = {

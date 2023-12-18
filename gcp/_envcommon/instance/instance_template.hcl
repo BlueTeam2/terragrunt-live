@@ -1,8 +1,10 @@
 terraform {
-  source = "tfr:///terraform-google-modules/vm/google//modules/instance_template?version=10.1.1"
+  source = "${local.base_source_url}?version=10.1.1"
 }
 
 locals {
+  base_source_url = "tfr:///terraform-google-modules/vm/google//modules/instance_template"
+
   environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
   env              = local.environment_vars.locals.environment
 
