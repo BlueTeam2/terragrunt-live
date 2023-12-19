@@ -34,7 +34,6 @@ dependency "cluster" {
 
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
   mock_outputs = {
-    name           = "mock_name"
     ca_certificate = "mock_ca_certificate"
   }
 }
