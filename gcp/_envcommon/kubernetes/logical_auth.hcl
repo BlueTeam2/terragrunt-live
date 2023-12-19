@@ -5,8 +5,8 @@
 
 terraform {
   error_hook "expired_kubernetes_token" {
-    commands  = ["plan", "destroy"]
-    execute   = [
+    commands = ["plan", "destroy"]
+    execute = [
       "echo",
       "-e",
       "\\e[41m Kubernetes token is expired. Please refresh it using `terragrunt run-all refresh` in ${get_terragrunt_dir()} \\e[0m"

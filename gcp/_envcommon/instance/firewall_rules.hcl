@@ -1,8 +1,10 @@
 terraform {
-  source = "tfr:///terraform-google-modules/network/google//modules/firewall-rules?version=8.1.0"
+  source = "${local.base_source_url}?version=8.1.0"
 }
 
 locals {
+  base_source_url = "tfr:///terraform-google-modules/network/google//modules/firewall-rules"
+
   environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
   env              = local.environment_vars.locals.environment
 
