@@ -27,7 +27,19 @@ dependency "mongodb" {
 
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
   mock_outputs = {
-    instances_details = "mock_instances_details"
+    instances_details = [
+      {
+        network_interface = [
+          {
+            access_config = [
+              {
+                nat_ip = "mock_nat_ip"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 }
 

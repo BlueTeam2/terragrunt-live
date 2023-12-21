@@ -34,7 +34,7 @@ dependency "cluster" {
 
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
   mock_outputs = {
-    ca_certificate = "mock_ca_certificate"
+    ca_certificate = "U21haGEgVG9w" # Base64 mock
   }
 }
 
