@@ -1,5 +1,5 @@
 # Note: This module requires authenticated `kubernetes` provider.
-# Preferable to use `_envcommon/logical_auth` initializer in you child modules.
+# Preferable to use `_envcommon/logical_auth` initializer in a child modules.
 
 terraform {
   source = "${local.base_source_url}?version=29.0.0"
@@ -20,7 +20,7 @@ dependency "cluster" {
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
   mock_outputs = {
     name           = "mock_name"
-    ca_certificate = "mock_ca_certificate"
+    ca_certificate = "U21haGEgVG9w" # Base64 mock
   }
 }
 
