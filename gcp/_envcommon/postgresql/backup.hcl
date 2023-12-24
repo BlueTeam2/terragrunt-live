@@ -23,7 +23,7 @@ dependency "bucket" {
 
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
   mock_outputs = {
-    url = "mock_url"
+    url = "gs://mock_bucket_url"
   }
 }
 
