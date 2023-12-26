@@ -13,7 +13,7 @@ locals {
 }
 
 dependency "instance_template" {
-  config_path = "../instance_template"
+  config_path = "../template"
 
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
   mock_outputs = {

@@ -24,19 +24,16 @@ dependency "network" {
 dependency "firewall_rules" {
   config_path = "../firewall_rules"
 
-  mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
-  mock_outputs = {
-    firewall_rules_ingress_egress = {
-      "mock_environment_service_rule" = {
-        target_tags = ["mock_target_tag"]
-      }
-    }
-  }
+  # IMPORTANT NOTE: Outputs from a `firewall_rules` module are essentially
+  # entire resources that are managed by an underlying `for_each` directive.
+  # Because of this, it's impossible to set proper mock outputs in place of them
+  # (The resources may not exist, so may not be present in the module output).
+  # Terraform's `try` function was used to handle this situation
 }
 
 inputs = {
   name_prefix = "${local.env}-${local.name}-template"
-  tags        = values(dependency.firewall_rules.outputs.firewall_rules_ingress_egress)[0].target_tags
+  tags        = try(values(dependency.firewall_rules.outputs.firewall_rules_ingress_egress)[0].target_tags, ["mock_tag"])
 
   labels = {
     app     = "schedule"
