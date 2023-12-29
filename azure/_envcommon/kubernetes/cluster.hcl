@@ -32,4 +32,9 @@ inputs = {
   rbac_aad                          = true
   rbac_aad_managed                  = true
   role_based_access_control_enabled = true
+
+  tags = {
+    app = "schedule"
+    env = local.env
+  }
 }
