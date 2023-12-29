@@ -1,6 +1,6 @@
 locals {
   project     = "schedule"
-  environment = "prod"
+  environment = "stage"
 }
 
 inputs = {
