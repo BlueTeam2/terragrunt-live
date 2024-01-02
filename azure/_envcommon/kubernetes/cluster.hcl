@@ -28,9 +28,9 @@ inputs = {
   identity_type                 = "SystemAssigned"
 
   net_profile_pod_cidr              = "10.1.0.0/16" # Override at the environment
-  private_cluster_enabled           = true
-  rbac_aad                          = true
-  rbac_aad_managed                  = true
+  private_cluster_enabled           = false
+  rbac_aad                          = false
+  rbac_aad_managed                  = false
   role_based_access_control_enabled = true
 
   tags = {
