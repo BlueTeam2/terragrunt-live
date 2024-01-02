@@ -9,3 +9,5 @@ include "provider" {
 include "envcommon" {
   path = "${dirname(find_in_parent_folders())}/gcp/_envcommon/kubernetes/cluster.hcl"
 }
+
+prevent_destroy = true # Pet
